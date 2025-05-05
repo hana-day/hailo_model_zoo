@@ -14,11 +14,12 @@ try:
             f"Current Hailo-Model-Zoo works best with DFC version {CUR_DFC_VERSION}. Please consider updating your DFC"
         )
 except PackageNotFoundError:
-    raise PackageNotFoundError(
-        f"\nThe Dataflow Compiler package {package_name!r} was not found.\n"
-        f"Please verify working in the correct virtualenv.\n"
-        f"If you are not an Hailo customer, please visit us at https://hailo.ai/"
-    ) from None
+    pass
+    #raise PackageNotFoundError(
+    #    f"\nThe Dataflow Compiler package {package_name!r} was not found.\n"
+    #    f"Please verify working in the correct virtualenv.\n"
+    #    f"If you are not an Hailo customer, please visit us at https://hailo.ai/"
+    #) from None
 
 try:
     import cpuinfo
