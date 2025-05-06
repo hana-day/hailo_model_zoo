@@ -1057,7 +1057,8 @@ def instance_segmentation_postprocessing(endnodes, device_pre_post_layers=None, 
 
 
 def visualize_yolov5_seg_results(
-    detections, img, class_names=None, alpha=0.5, score_thres=0.25, mask_thresh=0.5, max_boxes_to_draw=20, **kwargs
+    detections, img, class_names=None, alpha=0.5, score_thres=0.25, mask_thresh=0.5, max_boxes_to_draw=20,
+    color_fn=lambda: np.random.randint(low=0, high=255, size=3, dtype=np.uint8), **kwargs
 ):
     img_idx = 0
     img_out = img[img_idx].copy()
@@ -1090,7 +1091,7 @@ def visualize_yolov5_seg_results(
     for idx, mask in enumerate(masks):
         xmin, ymin, xmax, ymax = boxes[idx].astype(np.int32)
 
-        color = np.random.randint(low=0, high=255, size=3, dtype=np.uint8)
+        color = color_fn()
         # Draw bbox
         if not skip_boxes:
             img_out = cv2.rectangle(img_out, (xmin, ymin), (xmax, ymax), [int(c) for c in color], 3)
